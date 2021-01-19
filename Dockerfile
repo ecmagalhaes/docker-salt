@@ -12,7 +12,7 @@ RUN apt-get -qq update && \
     apt-get install -y wget gnupg2 && \
     wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - && \
     echo "deb http://repo.saltstack.com/apt/debian/9/amd64/${VERSION} stretch main" >/etc/apt/sources.list.d/saltstack.list && \
-    apt-get update && apt-get install -y salt-master salt-api pwgen git make myrepos && \
+    apt-get update && apt-get install -y salt-master salt-minion  salt-api pwgen git make myrepos && \
     mkdir -p /etc/reclass /var/run/salt /etc/salt/pki/master/minions && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -63,6 +63,10 @@ ADD files/api.conf /etc/salt/master.d/
 ADD files/auth.conf /etc/salt/master.d/
 
 EXPOSE 4505 4506 8000
+
+RUN salt-key -A
+
+RUN salt '*' test.ping
 
 COPY files/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/bin/tini", "--", "/entrypoint.sh"]
