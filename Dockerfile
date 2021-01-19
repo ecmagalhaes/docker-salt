@@ -49,13 +49,13 @@ RUN git clone https://github.com/salt-formulas/salt-formulas.git /tmp/salt-formu
     cd && rm -rf /tmp/salt-formulas
 
 # Setup salt-formulas repository
-#RUN echo "deb http://ppa.launchpad.net/salt-formulas/ppa/ubuntu xenial main" >/etc/apt/sources.list.d/salt-formulas.list && \
-#    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 39847281B4B4F5E69A9012612B06BC3AFC7315C0 && \
-#    apt-get -qq update && \
-#    apt-get install -y salt-formula-* && \
-#    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN echo "deb http://ppa.launchpad.net/salt-formulas/ppa/ubuntu xenial main" >/etc/apt/sources.list.d/salt-formulas.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 39847281B4B4F5E69A9012612B06BC3AFC7315C0 && \
+    apt-get -qq update && \
+    apt-get install -y salt-formula-* && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#VOLUME ['/etc/salt/pki', '/srv/salt']
+VOLUME ['/etc/salt/pki', '/srv/salt']
 ADD files/reclass-config.yml /etc/reclass/
 ADD files/reclass.conf /etc/salt/master.d/
 ADD files/env.conf /etc/salt/master.d/
