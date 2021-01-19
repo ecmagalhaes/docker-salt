@@ -2,7 +2,7 @@ FROM debian:stretch
 
 MAINTAINER Filip Pytloun <filip@pytloun.cz>
 
-ARG version=2018.3
+ARG version=3000
 ENV VERSION $version
 
 ENV DEBIAN_FRONTEND noninteractive
