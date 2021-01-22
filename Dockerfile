@@ -23,4 +23,4 @@ RUN echo "file_client: local" > /etc/salt/minion.d/minion.conf && \
     echo "top_file_merging_strategy: same" >> /etc/salt/minion.d/file_roots.conf
 
 RUN salt-call --local -l debug service.restart salt-minion
-RUN salt-call
+RUN salt-call --version
