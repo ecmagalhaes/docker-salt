@@ -9,7 +9,7 @@ RUN apt-get update -y; apt-get full-upgrade -y; apt-get install -y \
 	ca-certificates \
 	rsync
 
-RUN curl -L https://bootstrap.saltstack.com | sh -s -- -x python3
+RUN curl -L https://bootstrap.saltstack.com | sh -s -- -x python3 stable 3002.2
 RUN mkdir -p /srv/salt/states; mkdir -p /srv/salt/pillar ; apt-get clean; rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /opt/salt/base; mkdir -p /opt/salt/base{pillar,states,stack}
     
